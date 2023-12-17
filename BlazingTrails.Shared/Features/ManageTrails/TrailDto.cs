@@ -44,6 +44,10 @@ namespace BlazingTrails.Shared.Features.ManageTrails
                 .GreaterThan(0)
                 .WithMessage("Please enter a valid length (>0)");
 
+            RuleFor(x => x.TimeInMinutes)
+                .GreaterThan(0)
+                .WithMessage("Please enter a time");
+
             RuleFor(x => x.Route)
                 .NotEmpty()
                 .WithMessage("Please add a route instruction");

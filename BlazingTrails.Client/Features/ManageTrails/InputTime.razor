@@ -1,0 +1,49 @@
+﻿@using System.Diagnostics.CodeAnalysis
+@inherits InputBase<int>
+
+<div class="input-time">
+    <div>
+        <input type="number" min="0" class="form-control @CssClass" @onchange="SetHourValue" value="@_hours"/>
+        <label>Hours</label>
+    </div>
+    <div>
+        <input type="number" min="0" max="59" class="form-control @CssClass" @onchange="SetMinuteValue" value="@_minutes"/>
+        <label>Minutes</label>
+    </div>
+</div>
+
+@code {
+    private int _hours;
+    private int _minutes;
+
+    protected override bool TryParseValueFromString(string value, [MaybeNullWhen(false)] out int result, [NotNullWhen(false)] out string validationErrorMessage)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if(CurrentValue > 0)
+        {
+            _hours = CurrentValue / 60;
+            _minutes = CurrentValue % 60;
+        }
+    }
+
+    private void SetHourValue(ChangeEventArgs args)
+    {
+        int.TryParse(args.Value?.ToString(), out _hours);
+        SetCurrentValue();
+    }
+
+    private void SetMinuteValue(ChangeEventArgs args)
+    {
+        int.TryParse(args.Value?.ToString(), out _minutes);
+        SetCurrentValue();
+    }
+
+    private void SetCurrentValue()
+    {
+        CurrentValue = (_hours * 60) + _minutes;
+    }
+}
