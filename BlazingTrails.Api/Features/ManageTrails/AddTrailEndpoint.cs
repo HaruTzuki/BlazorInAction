@@ -1,5 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
-using BlazingTrails.Shared.Features.ManageTrails;
+using BlazingTrails.Shared.Features.ManageTrails.AddTrail;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazingTrails.Api;
